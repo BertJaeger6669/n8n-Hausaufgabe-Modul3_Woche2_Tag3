@@ -1,0 +1,26 @@
+%% Workflow: Hausaufgabe Modul3_Woche2_Tag3 (Hausaufgabe_Modul3_Woche2_Tag3.json)
+flowchart TD
+    A([Rechnungsprüfung starten]) --> B[PDFs aus /files lesen]
+    B --> B2[Schleife: eine Rechnung pro Durchlauf]
+    B2 --> C[Text aus PDF extrahieren]
+    C -- Erfolg --> D[Betrag per Regex ermitteln]
+    C -- Fehler --> X[Fehlerfall: PDF nicht lesbar]
+    X --> XM[Fehler melden per E-Mail]
+    X --> L
+    D --> E["KI: Rechnung klassifizieren (Ollama, lokal)"]
+    E --> F[KI-Ergebnis auswerten und plausibilisieren]
+    F --> G{Freigabe nötig?<br/>Betrag > 100 € oder Prüfhinweis}
+    G -- nein --> H[Status: automatisch freigegeben]
+    G -- ja --> I[Menschliche Freigabe per E-Mail]
+    I --> W[Wait: Link-Antwort abwarten]
+    W --> J{Freigegeben?}
+    J -- ja --> K[Status: manuell freigegeben]
+    J -- nein --> M[Status: manuell abgelehnt]
+    H --> N[Buchhaltung informieren]
+    K --> N
+    H --> L[Protokollzeile erstellen]
+    K --> L
+    M --> L
+    L --> O[CSV-Protokoll schreiben]
+    O --> B2
+    ET([Error Trigger]) --> EM[Workflow-Fehler melden]
