@@ -42,7 +42,9 @@ Entfernt wurden die Knoten `Betrag > 100?`, `E-Mail senden` und `Keine Aktion (u
 
 ## 4. Ablauf des Workflows
 
-Diagramm: `docs/ablaufdiagramm.mmd` (wird auf GitHub/GitLab automatisch gerendert). **Zusätzlich** einen Screenshot der Canvas-Ansicht unter `docs/screenshot.png` ablegen (Anleitung im Testnachweis).
+   Das Ablaufdiagramm steht in `docs/ablaufdiagramm.mmd` und wird unten direkt angezeigt. Der Screenshot zeigt den Workflow in n8n nach einem erfolgreichen Lauf:
+
+   ![Workflow in n8n](docs/screenshot-1.png)
 
 ```mermaid
 flowchart TD
